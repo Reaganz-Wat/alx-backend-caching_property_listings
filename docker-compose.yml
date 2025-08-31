@@ -4,20 +4,25 @@ services:
     container_name: properties_container
     ports:
       - "${POSTGRES_PORT}:5432"
-    env_file:
-      - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    
+
   redis:
     image: redis:latest
     container_name: properties_redis_container
     ports:
       - "${REDIS_PORT}:6379"
-    env_file:
-      - .env
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}  # optional if you set a password
     restart: always
+    volumes:
+      - redis_data:/data
 
 volumes:
   postgres_data:
+  redis_data:

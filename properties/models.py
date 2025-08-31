@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Properties(models.Model):
+class Property(models.Model):
     """
     title (CharField, max_length=200)
     description (TextField)
